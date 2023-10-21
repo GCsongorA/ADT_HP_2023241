@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ISTSU0_ADT_2023241.Models\ISTSU0_ADT_2023241.Models.csproj" />
+    <ProjectReference Include="..\ISTSU0_ADT_2023241.Repository\ISTSU0_ADT_2023241.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
