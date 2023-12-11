@@ -12,13 +12,18 @@ namespace ISTSU0_ADT_2023241.Repository
     {
         public GuitarDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
-            
+
         }
 
         public DbSet<Band> Bands { get; set; }
         public DbSet<Guitar> Guitars { get; set; }
         public DbSet<Guitarist> Guitarists { get; set; }
         public DbSet<GuitarStore> GuitarStores { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseInMemoryDatabase("GuitarDb");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

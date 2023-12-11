@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ISTSU0_ADT_2023241.Models
@@ -14,7 +15,9 @@ namespace ISTSU0_ADT_2023241.Models
         public int Age { get; set; }
         [ForeignKey(nameof(Band))]
         public Guid BandId { get; set; }
+        [JsonIgnore]
         public List<Guitar> Guitars { get; set; }
+        [JsonIgnore]
         public Band Band { get; set; }
     }
 }

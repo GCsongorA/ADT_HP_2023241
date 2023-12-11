@@ -45,7 +45,7 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
         [Route("Delete/{id:Guid}")]
         public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
         {
-            var result = bandLogic.DeleteAsync(id);
+            var result = await bandLogic.DeleteAsync(id);
             if (result == null)
             {
                 return NotFound();
