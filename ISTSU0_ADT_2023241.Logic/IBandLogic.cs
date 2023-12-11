@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ISTSU0_ADT_2023241.Logic
 {
-    internal interface IBandLogic
+    public interface IBandLogic
     {
         public IQueryable<Band> GetAll();
         public Task<Band?> GetOneAsync(Guid id);
