@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ISTSU0_ADT_2023241.Repository
+namespace ISTSU0_ADT_2023241.Logic
 {
-    public interface IBandRepository
+    internal interface IBandLogic
     {
         public IQueryable<Band> GetAll();
         public Task<Band?> GetOneAsync(Guid id);

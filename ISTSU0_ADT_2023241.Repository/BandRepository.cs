@@ -17,7 +17,7 @@ namespace ISTSU0_ADT_2023241.Repository
             this.guitarDbContext = guitarDbContext;
         }
 
-        public async Task<Band> Create(Band band)
+        public async Task<Band> CreateAsync(Band band)
         {
             await guitarDbContext.Bands.AddAsync(band);
             await guitarDbContext.SaveChangesAsync();
@@ -25,7 +25,7 @@ namespace ISTSU0_ADT_2023241.Repository
             return band;
         }
 
-        public async Task<Band?> Delete(Guid id)
+        public async Task<Band?> DeleteAsync(Guid id)
         {
             var bandToDelete = await guitarDbContext.Bands.FirstOrDefaultAsync(x=>x.Id== id);
             if (bandToDelete==null)
@@ -42,7 +42,7 @@ namespace ISTSU0_ADT_2023241.Repository
             return guitarDbContext.Bands.AsQueryable();
         }
 
-        public async Task<Band?> GetOne(Guid id)
+        public async Task<Band?> GetOneAsync(Guid id)
         {
             var result = await guitarDbContext.Bands.FirstOrDefaultAsync(x => x.Id == id);
             if (result==null)
@@ -52,7 +52,7 @@ namespace ISTSU0_ADT_2023241.Repository
             return result;
         }
 
-        public async Task<Band?> Update(Guid id, Band band)
+        public async Task<Band?> UpdateAsync(Guid id, Band band)
         {
             var bandToUpdate = await guitarDbContext.Bands.FirstOrDefaultAsync(x => x.Id == id);
             if (bandToUpdate==null)
