@@ -12,7 +12,7 @@ namespace ISTSU0_ADT_2023241.Repository
     {
         public GuitarDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
-
+            this.Database.EnsureCreated();
         }
 
         public DbSet<Band> Bands { get; set; }
@@ -33,7 +33,7 @@ namespace ISTSU0_ADT_2023241.Repository
             {
                 new Band()
                 {
-                    Id = Guid.NewGuid(),
+                    Id = Guid.Parse("97d2a327-c0b9-4f76-971f-440278bf49c0"),
                     Name= "Rage Against The Machine",
                     Genre = Genre.RapMetal
                 }

@@ -1,4 +1,5 @@
-﻿using ISTSU0_ADT_2023241.Logic;
+﻿using ISTSU0_ADT_2023241.Endpoint.Dtos;
+using ISTSU0_ADT_2023241.Logic;
 using ISTSU0_ADT_2023241.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,7 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
 
         [HttpGet]
         [Route("GetOne/{id:Guid}")]
-        public async Task<IActionResult> GetOneAsync([FromRoute] Guid id)
+        public async Task<IActionResult> GetOne([FromRoute] Guid id)
         {
             var result = await bandLogic.GetOneAsync(id);
 
@@ -43,7 +44,7 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
 
         [HttpDelete]
         [Route("Delete/{id:Guid}")]
-        public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var result = await bandLogic.DeleteAsync(id);
             if (result == null)
@@ -55,16 +56,28 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public async Task<IActionResult> CreateAsync([FromBody] Band band)
+        public async Task<IActionResult> Create([FromBody] CreateBandDto createBandDto)
         {
-            var result = await bandLogic.CreateAsync(band);
-            return CreatedAtAction(nameof(GetOneAsync), band.Id, band);
+            Band bandDomainModel = new()
+            {
+                Name = createBandDto.Name,
+                Genre = createBandDto.Genre
+            };
+
+            bandDomainModel = await bandLogic.CreateAsync(bandDomainModel);
+            return CreatedAtAction(nameof(GetOne), new { bandDomainModel.Id }, bandDomainModel);
         }
 
         [HttpPut]
         [Route("Update/{id:Guid}")]
-        public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] Band band)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateBandDto updateBandDto)
         {
+            Band band = new()
+            {
+                Name = updateBandDto.Name,
+                Genre = updateBandDto.Genre
+            };
+
             var result = await bandLogic.UpdateAsync(id, band);
             if (result == null)
             {
