@@ -8,7 +8,7 @@ namespace ISTSU0_ADT_2023241.Models
 {
     public enum Genre
     {
-        Metal, Rock, Pop, Blues, Jazz
+        Metal, Rock, Pop, Blues, Jazz, RapMetal
     }
     public class Band
     {
