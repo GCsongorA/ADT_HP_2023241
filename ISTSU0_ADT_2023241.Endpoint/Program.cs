@@ -1,3 +1,6 @@
+using ISTSU0_ADT_2023241.Logic;
+using ISTSU0_ADT_2023241.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IBandLogic, BandLogic>();
+builder.Services.AddScoped<IBandRepository, BandRepository>();
+builder.Services.AddDbContext<GuitarDbContext>();
 
 var app = builder.Build();
 

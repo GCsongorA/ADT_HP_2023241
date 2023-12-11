@@ -10,9 +10,9 @@ namespace ISTSU0_ADT_2023241.Logic
 {
     public class BandLogic : IBandLogic
     {
-        private readonly BandRepository bandRepository;
+        private readonly IBandRepository bandRepository;
 
-        public BandLogic(BandRepository bandRepository)
+        public BandLogic(IBandRepository bandRepository)
         {
             this.bandRepository = bandRepository;
         }
