@@ -48,7 +48,10 @@ namespace ISTSU0_ADT_2023241.Test
                 band.Id = id;
                 return Task.FromResult(band);
             });
-
+            mockBandRepo.Setup(x => x.CreateAsync(It.IsAny<Band>())).Returns<Band>((band) =>
+            {
+                return Task.FromResult(band);
+            });
             this.bandLogic = new BandLogic(mockBandRepo.Object, mockGuitaristRepo.Object);
         }
         [Test]
@@ -56,5 +59,17 @@ namespace ISTSU0_ADT_2023241.Test
         {
             Assert.That(bandLogic.GetOneAsync(Guid.Parse("f19b6121-2139-4c0a-b707-940edddecc1d")).Result.Name == "Lorna Shore");
         }
+
+        [Test]
+        public void GetAllTest1()
+        {
+            Assert.That(bandLogic.GetAll().ToList().Count() == 3);
+        }
+        [Test]
+        public void CreateTest()
+        {
+            Assert.That(bandLogic.CreateAsync(new Band { Name = "Test" }).Result.Name == "Test");
+        }
+
     }
 }
