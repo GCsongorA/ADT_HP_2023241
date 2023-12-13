@@ -44,7 +44,7 @@ namespace ISTSU0_ADT_2023241.Repository
 
         public async Task<Band?> GetOneAsync(Guid id)
         {
-            var result = await guitarDbContext.Bands.Include(x=>x.Guitarists).FirstOrDefaultAsync(x => x.Id == id);
+            var result = await guitarDbContext.Bands.Include(x=>x.Guitarists).ThenInclude(x=>x.Guitars).FirstOrDefaultAsync(x => x.Id == id);
             if (result==null)
             {
                 return null;

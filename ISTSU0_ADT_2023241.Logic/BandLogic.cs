@@ -52,6 +52,13 @@ namespace ISTSU0_ADT_2023241.Logic
             return await bandRepository.UpdateAsync(id, band);
         }
 
+        public async Task<List<string>> WhatGuitarsDoesThisBandHave(Guid id)
+        {
+            var band = await bandRepository.GetOneAsync(id);
+            var guitarTypes = band.Guitarists.SelectMany(x => x.Guitars.Select(x => x.BodyType.ToString()));
+            return guitarTypes.ToList();
+        }
+
 
 
         #endregion

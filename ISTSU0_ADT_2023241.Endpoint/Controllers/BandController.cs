@@ -29,6 +29,14 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
         }
 
         [HttpGet]
+        [Route("WhatGuitarsDoesThisBandHave/{id:Guid}")]
+        public async Task<IActionResult> WhatGuitarsDoesThisBandHave([FromRoute] Guid id)
+        {
+            var result = await bandLogic.WhatGuitarsDoesThisBandHave(id);
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
