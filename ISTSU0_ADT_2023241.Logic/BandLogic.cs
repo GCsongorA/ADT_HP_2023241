@@ -18,6 +18,7 @@ namespace ISTSU0_ADT_2023241.Logic
         }
 
 
+
         #region CRUD
         public async Task<Band> CreateAsync(Band band)
         {

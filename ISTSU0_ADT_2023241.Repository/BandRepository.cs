@@ -39,7 +39,7 @@ namespace ISTSU0_ADT_2023241.Repository
 
         public IQueryable<Band> GetAll()
         {
-            return guitarDbContext.Bands.AsQueryable().Include(x=>x.Guitarists);
+            return guitarDbContext.Bands.AsQueryable().Include(x => x.Guitarists).ThenInclude(x=>x.Guitars);
         }
 
         public async Task<Band?> GetOneAsync(Guid id)
