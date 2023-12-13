@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ISTSU0_ADT_2023241.Logic
 {
-    internal class GuitarLogic: IGuitarLogic
+    public class GuitarLogic: IGuitarLogic
     {
         private readonly IGuitarRepository guitarRepository;
 

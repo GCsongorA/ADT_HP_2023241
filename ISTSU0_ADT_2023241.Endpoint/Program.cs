@@ -13,6 +13,8 @@ builder.Services.AddScoped<IBandLogic, BandLogic>();
 builder.Services.AddScoped<IBandRepository, BandRepository>();
 builder.Services.AddScoped<IGuitaristLogic, GuitaristLogic>();
 builder.Services.AddScoped<IGuitaristRepository, GuitaristRepository>();
+builder.Services.AddScoped<IGuitarLogic, GuitarLogic>();
+builder.Services.AddScoped<IGuitarRepository, GuitarRepository>();
 builder.Services.AddDbContext<GuitarDbContext>();
 
 var app = builder.Build();
