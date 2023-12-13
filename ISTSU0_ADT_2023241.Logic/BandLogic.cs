@@ -11,13 +11,20 @@ namespace ISTSU0_ADT_2023241.Logic
     public class BandLogic : IBandLogic
     {
         private readonly IBandRepository bandRepository;
+        private readonly IGuitaristRepository guitaristRepository;
 
-        public BandLogic(IBandRepository bandRepository)
+        public BandLogic(IBandRepository bandRepository, IGuitaristRepository guitaristRepository)
         {
             this.bandRepository = bandRepository;
+            this.guitaristRepository = guitaristRepository;
         }
 
-
+        public async Task<bool> DoesThisBandHaveMultipleGuitarists(Guid bandId)
+        {
+            var guitarists = guitaristRepository.GetAll();
+            var band = await bandRepository.GetOneAsync(bandId);
+            return guitarists.Where(x => x.BandId == band.Id).Count() > 1;
+        }
 
         #region CRUD
         public async Task<Band> CreateAsync(Band band)

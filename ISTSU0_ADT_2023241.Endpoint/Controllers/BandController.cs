@@ -21,6 +21,14 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
         }
 
         [HttpGet]
+        [Route("DoesThisBandHaveMultipleGuitarists/{bandId:Guid}")]
+        public async Task<IActionResult> DoesThisBandHaveMultipleGuitarists([FromRoute] Guid bandId)
+        {
+            var result = await bandLogic.DoesThisBandHaveMultipleGuitarists(bandId);
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {

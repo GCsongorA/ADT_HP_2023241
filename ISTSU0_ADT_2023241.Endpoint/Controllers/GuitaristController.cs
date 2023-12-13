@@ -20,6 +20,18 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
         }
 
         [HttpGet]
+        [Route("WhereDoesThisGuitaristPlay/{id:Guid}")]
+        public async Task<IActionResult> WhereDoesThisGuitaristPlay([FromRoute] Guid id)
+        {
+            var result = await guitaristLogic.WhereDoesThisGuitaristPlay(id);
+            if (result==null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+        [HttpGet]
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {

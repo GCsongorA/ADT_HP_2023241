@@ -44,6 +44,12 @@ namespace ISTSU0_ADT_2023241.Logic
             return await guitaristRepository.UpdateAsync(id, guitarist);
         }
 
+        public async Task<Band?> WhereDoesThisGuitaristPlay(Guid id)
+        {
+            var guitarist = await guitaristRepository.GetOneAsync(id);
+            return guitarist?.Band;
+        }
+
 
 
         #endregion

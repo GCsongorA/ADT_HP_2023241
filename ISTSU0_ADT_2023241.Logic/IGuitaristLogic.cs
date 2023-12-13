@@ -9,6 +9,7 @@ namespace ISTSU0_ADT_2023241.Logic
 {
     public interface IGuitaristLogic
     {
+        public Task<Band?> WhereDoesThisGuitaristPlay(Guid id);
         public IQueryable<Guitarist> GetAll();
         public Task<Guitarist?> GetOneAsync(Guid id);
         public Task<Guitarist?> UpdateAsync(Guid id, Guitarist guitarist);

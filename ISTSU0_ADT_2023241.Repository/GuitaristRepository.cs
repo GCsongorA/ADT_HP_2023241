@@ -39,12 +39,12 @@ namespace ISTSU0_ADT_2023241.Repository
 
         public IQueryable<Guitarist> GetAll()
         {
-            return guitarDbContext.Guitarists.AsQueryable().Include(x=>x.Guitars);
+            return guitarDbContext.Guitarists.AsQueryable().Include(x=>x.Guitars).Include(x => x.Band);
         }
 
         public async Task<Guitarist?> GetOneAsync(Guid id)
         {
-            var result = await guitarDbContext.Guitarists.Include(x=>x.Guitars).FirstOrDefaultAsync(x => x.Id == id);
+            var result = await guitarDbContext.Guitarists.Include(x=>x.Guitars).Include(x=>x.Band).FirstOrDefaultAsync(x => x.Id == id);
             if (result == null)
             {
                 return null;
