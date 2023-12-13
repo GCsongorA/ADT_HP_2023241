@@ -15,9 +15,9 @@ namespace ISTSU0_ADT_2023241.Models
         public int Age { get; set; }
         [ForeignKey(nameof(Band))]
         public Guid BandId { get; set; }
+        //[JsonIgnore]
+        public virtual List<Guitar> Guitars { get; set; }
         [JsonIgnore]
-        public List<Guitar> Guitars { get; set; }
-        [JsonIgnore]
-        public Band Band { get; set; }
+        public virtual Band Band { get; set; }
     }
 }

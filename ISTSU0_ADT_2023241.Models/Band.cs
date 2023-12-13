@@ -16,7 +16,7 @@ namespace ISTSU0_ADT_2023241.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public Genre Genre { get; set; }
-        [JsonIgnore]
-        public List<Guitarist> Guitarists { get; set; }
+        //[JsonIgnore]
+        public virtual List<Guitarist> Guitarists { get; set; }
     }
 }

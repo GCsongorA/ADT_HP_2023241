@@ -18,7 +18,6 @@ namespace ISTSU0_ADT_2023241.Repository
         public DbSet<Band> Bands { get; set; }
         public DbSet<Guitar> Guitars { get; set; }
         public DbSet<Guitarist> Guitarists { get; set; }
-        public DbSet<GuitarStore> GuitarStores { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

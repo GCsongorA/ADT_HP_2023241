@@ -11,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IBandLogic, BandLogic>();
 builder.Services.AddScoped<IBandRepository, BandRepository>();
+builder.Services.AddScoped<IGuitaristLogic, GuitaristLogic>();
+builder.Services.AddScoped<IGuitaristRepository, GuitaristRepository>();
 builder.Services.AddDbContext<GuitarDbContext>();
 
 var app = builder.Build();

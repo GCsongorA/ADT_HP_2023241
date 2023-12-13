@@ -19,11 +19,7 @@ namespace ISTSU0_ADT_2023241.Models
         public string Brand { get; set; }
         [ForeignKey(nameof(Guitarist))]
         public Guid GuitaristId { get; set; }
-        [ForeignKey(nameof(GuitarStore))]
-        public Guid GuitarStoreId { get; set; }
         [JsonIgnore]
-        public Guitarist Guitarist { get; set; }
-        [JsonIgnore]
-        public GuitarStore GuitarStore { get; set; }
+        public virtual Guitarist Guitarist { get; set; }
     }
 }

@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ConsoleMenu-simple" Version="2.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ISTSU0_ADT_2023241.Models\ISTSU0_ADT_2023241.Models.csproj" />
   </ItemGroup>
 
