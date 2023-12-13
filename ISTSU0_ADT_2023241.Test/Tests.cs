@@ -14,6 +14,7 @@ namespace ISTSU0_ADT_2023241.Test
     [TestFixture]
     public class Tests
     {
+        private GuitaristLogic guitaristLogic;
         private BandLogic bandLogic;
         private IQueryable<Band> FakeBandObjects() => new List<Band>()
         {
@@ -53,6 +54,11 @@ namespace ISTSU0_ADT_2023241.Test
                 return Task.FromResult(band);
             });
             this.bandLogic = new BandLogic(mockBandRepo.Object, mockGuitaristRepo.Object);
+            this.guitaristLogic = new GuitaristLogic(mockGuitaristRepo.Object);
+            mockGuitaristRepo.Setup(x => x.CreateAsync(It.IsAny<Guitarist>())).Returns<Guitarist>((guitarist) =>
+            {
+                return Task.FromResult(guitarist);
+            });
         }
         [Test]
         public void GetOneTest()
@@ -70,6 +76,10 @@ namespace ISTSU0_ADT_2023241.Test
         {
             Assert.That(bandLogic.CreateAsync(new Band { Name = "Test" }).Result.Name == "Test");
         }
-
+        [Test]
+        public void CreateTestGuitarist()
+        {
+            Assert.That(guitaristLogic.CreateAsync(new Guitarist { Name = "Test" }).Result.Name == "Test");
+        }
     }
 }
