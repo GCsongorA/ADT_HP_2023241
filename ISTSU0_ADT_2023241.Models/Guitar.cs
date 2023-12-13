@@ -17,6 +17,7 @@ namespace ISTSU0_ADT_2023241.Models
         public Guid Id { get; set; }
         public string Model { get; set; }
         public string Brand { get; set; }
+        public BodyType BodyType { get; set; }
         [ForeignKey(nameof(Guitarist))]
         public Guid GuitaristId { get; set; }
         [JsonIgnore]

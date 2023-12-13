@@ -8,14 +8,14 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GuitaristController : ControllerBase
+    public class GuitarController : ControllerBase
     {
-        private readonly IGuitaristLogic guitaristLogic;
-        private readonly ILogger<GuitaristController> logger;
+        private readonly IGuitarLogic guitarLogic;
+        private readonly ILogger<GuitarController> logger;
 
-        public GuitaristController(IGuitaristLogic guitaristLogic, ILogger<GuitaristController> logger)
+        public GuitarController(IGuitarLogic guitarLogic, ILogger<GuitarController> logger)
         {
-            this.guitaristLogic = guitaristLogic;
+            this.guitarLogic = guitarLogic;
             this.logger = logger;
         }
 
@@ -23,7 +23,7 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
         [Route("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            var result = await guitaristLogic.GetAll().ToListAsync();
+            var result = await guitarLogic.GetAll().ToListAsync();
             return Ok(result);
         }
 
@@ -31,7 +31,7 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
         [Route("GetOne/{id:Guid}")]
         public async Task<IActionResult> GetOne([FromRoute] Guid id)
         {
-            var result = await guitaristLogic.GetOneAsync(id);
+            var result = await guitarLogic.GetOneAsync(id);
 
             if (result == null)
             {
@@ -45,7 +45,7 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
         [Route("Delete/{id:Guid}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            var result = await guitaristLogic.DeleteAsync(id);
+            var result = await guitarLogic.DeleteAsync(id);
             if (result == null)
             {
                 return NotFound();
@@ -55,30 +55,30 @@ namespace ISTSU0_ADT_2023241.Endpoint.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public async Task<IActionResult> Create([FromBody] CreateGuitaristDto createGuitaristDto)
+        public async Task<IActionResult> Create([FromBody] CreateGuitarDto createGuitarDto)
         {
-            Guitarist guitaristDomainModel = new()
+            Guitar guitarDomainModel = new()
             {
-                Name = createGuitaristDto.Name,
-                Age = createGuitaristDto.Age,
-                BandId = createGuitaristDto.BandId
+                Model = createGuitarDto.Model,
+                Brand = createGuitarDto.Brand,
+                GuitaristId = createGuitarDto.GuitaristId,
+                BodyType = createGuitarDto.BodyType
             };
 
-            guitaristDomainModel = await guitaristLogic.CreateAsync(guitaristDomainModel);
-            return CreatedAtAction(nameof(GetOne), new { guitaristDomainModel.Id }, guitaristDomainModel);
+            guitarDomainModel = await guitarLogic.CreateAsync(guitarDomainModel);
+            return CreatedAtAction(nameof(GetOne), new { guitarDomainModel.Id }, guitarDomainModel);
         }
 
         [HttpPut]
         [Route("Update/{id:Guid}")]
-        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateGuitaristDto updateGuitaristDto)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateGuitarDto updateGuitarDto)
         {
-            Guitarist guitarist = new()
+            Guitar guitar = new()
             {
-                BandId = updateGuitaristDto.BandId,
-                Age = updateGuitaristDto.Age
+                GuitaristId = updateGuitarDto.GuitaristId
             };
 
-            var result = await guitaristLogic.UpdateAsync(id, guitarist);
+            var result = await guitarLogic.UpdateAsync(id, guitar);
             if (result == null)
             {
                 return NotFound();
