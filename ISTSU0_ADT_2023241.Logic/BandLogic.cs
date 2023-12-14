@@ -25,10 +25,20 @@ namespace ISTSU0_ADT_2023241.Logic
             var band = await bandRepository.GetOneAsync(bandId);
             return guitarists.Where(x => x.BandId == band.Id).Count() > 1;
         }
+        public async Task<List<string>> WhatGuitarsDoesThisBandHave(Guid id)
+        {
+            var band = await bandRepository.GetOneAsync(id);
+            var guitarTypes = band.Guitarists.SelectMany(x => x.Guitars.Select(x => x.BodyType.ToString()));
+            return guitarTypes.ToList();
+        }
 
         #region CRUD
         public async Task<Band> CreateAsync(Band band)
         {
+            if (band.Name == null)
+            {
+                throw new ArgumentException();
+            }
             return await bandRepository.CreateAsync(band);
         }
 
@@ -52,12 +62,7 @@ namespace ISTSU0_ADT_2023241.Logic
             return await bandRepository.UpdateAsync(id, band);
         }
 
-        public async Task<List<string>> WhatGuitarsDoesThisBandHave(Guid id)
-        {
-            var band = await bandRepository.GetOneAsync(id);
-            var guitarTypes = band.Guitarists.SelectMany(x => x.Guitars.Select(x => x.BodyType.ToString()));
-            return guitarTypes.ToList();
-        }
+       
 
 
 

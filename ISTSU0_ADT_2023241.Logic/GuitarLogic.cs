@@ -21,6 +21,10 @@ namespace ISTSU0_ADT_2023241.Logic
         #region CRUD
         public async Task<Guitar> CreateAsync(Guitar guitar)
         {
+            if (guitar.Brand==null||guitar.Model==null)
+            {
+                throw new ArgumentException();
+            }
             return await guitarRepository.CreateAsync(guitar);
         }
 
